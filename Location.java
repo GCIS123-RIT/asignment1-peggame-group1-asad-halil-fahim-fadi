@@ -1,5 +1,6 @@
 package Workspace;
 
+import Workspace.FileReader;
 public class Location {
 
     //This defines the actual location on the board.

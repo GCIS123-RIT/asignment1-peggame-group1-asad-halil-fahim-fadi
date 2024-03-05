@@ -6,26 +6,23 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+
 public class FileReader {
 
     public static void main(String[] args) {
 
         //This is the file path to be reused.
-        String filePath = "Workspace\\State";
-        String[][] arrayery = readFromFile(filePath);
 
-        // Printing the 2d array using a for loop inside a for loop.
-        for (String[] row : arrayery) {
-            for (String element : row) {
-                System.out.print(element + " ");
+        String[][] myArrayery = readFromFile("Workspace/State");
+        
+        for (int i = 0; i < myArrayery.length; i++) {
+            for (int j = 0; j < myArrayery[i].length; j++) {
+                System.out.print(myArrayery[i][j] + " ");
             }
-            //System.out.println(arrayery[2][2]);
+            System.out.println(); // Move to the next line after printing each row
         }
 
-
     }
-
-
     /**
      * This is the readFromFile method.
      * We use it to automatically open a file, create the array, and use bufferedreader in java.io to read the contents of the 
@@ -35,57 +32,55 @@ public class FileReader {
      * @return
      */
     public static String[][] readFromFile(String filePath) {
-        //Initilizing an empty 2D array, so we use null.
-        String[][] array = null;
+        //2D ARRAY 4 BY 4
+        String[][] TwoDeeArray = new String[4][4];
 
-        //Try and catch statement for code coverage and whatnot.
-        //We are using bufferedreader, InputStreamReader, then FileInputStream. 
-        //FileInputStream basically takes the bytes from a file, then streamreader converts them,
-        //Then they are finally read by the bufferedreader.
+
         try 
-        (BufferedReader bfReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath)))) {
+        {
+            //Try and catch statement for code coverage and whatnot.
+            //We are using bufferedreader, InputStreamReader, then FileInputStream. 
+            //FileInputStream basically takes the bytes from a file, then streamreader converts them,
+            //Then they are finally read by the bufferedreader.
+            FileInputStream theInputStream = new FileInputStream(filePath);
+            InputStreamReader readerStream = new InputStreamReader(theInputStream);
+            BufferedReader bfReader = new BufferedReader(readerStream);
 
-            // Incase we want there to be any mods to the general game state or game size, we will initialize the rows and 
-            //columns as 0, then we will check for how many rows and columns.
-            int rows = 0;
-            int columns = 0;
+            
+            //int rows = 0;
+            //int columns = 0;
+            //String line;
             String line;
+            int row = 0; // Track the current row index in TwoDeeArray
 
-            //While loop which breaks when the text file is finished, as in everything is done reading and we reached null.
+
+            //Gangsterly Reading the file, we have to use a WHILE LOP with FOR LOOP inside of it.
+            //Smart, I know.
             while ((line = bfReader.readLine()) != null) {
-                //Increment and add, because rows are in y, so each time this runs it means we have a row.
-                rows++;
-
-                //Create an array of elements, use regex for whitespace 
-                String[] elements = line.split("\\s+"); 
-                //If we're at 0 we increase to make sure its not 0
-                if (columns == 0) {
-                    columns = elements.length;
-                    //condition keeps going. Throwing exception to prevent any leak.
-                } else if (columns != elements.length);
-            }
-
-            // Initialize the actual array to hold.
-            array = new String[rows][columns];
-
-            // Reset the reader to start reading from the beginning of the file
-            int row = 0;
-            bfReader.close();
-            //Use same method as before.        
-            try (BufferedReader newBfReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath)))) {
-                // Populate the array with our values, and we use regex for split.
-                while ((line = newBfReader.readLine()) != null) {
-                    String[] elements = line.split("\\s+");
-                    array[row++] = elements;
+            String[] lineIN = line.trim().split("");
+            if (lineIN.length <= TwoDeeArray[0].length) {
+                //READING LINE BY LINE, LESS LENGHT, INCREMENT.
+                for (int j = 0; j < lineIN.length; j++) 
+                {
+                    TwoDeeArray[row][j] = lineIN[j];
                 }
-                newBfReader.close();
-            }
+                row++;
+            }       
+        else
+        {
+            System.err.println("Error: Line length exceeds column count.");
+        }
+}
+            bfReader.close();
+        
+        //CODE COVERAGE.
+        //TODO Halil prep for junit tests
         } catch (FileNotFoundException e) {
             System.out.println("File has not been found");
         } catch (IOException e) {
             System.out.println("There was an issue opening the file.");
         }
 
-        return array;
+        return TwoDeeArray;
     }
 }
