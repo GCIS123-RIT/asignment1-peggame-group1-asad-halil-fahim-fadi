@@ -20,6 +20,9 @@ public class Peg implements PegGameObject
         this.ReferenceNumber = RefNumb;
     }
 
+    public int getRow(){return this.row;}
+    public int getCol(){return this.column;}
+
 
     @Override
     public String toString()

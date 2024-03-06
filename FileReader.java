@@ -28,6 +28,10 @@ public class FileReader {
             System.out.println(); // Move to the next line after printing each row
         }
         System.out.println(myArrayery[1][1]);
+
+        //WORKS GETTER!
+        Peg testingval = (Peg) myArrayery[2][2];
+        System.out.println(testingval.getRow());
     }
 
     //Two Dimensional Array being initialized. It is a PegorHole.
@@ -69,6 +73,8 @@ public class FileReader {
                         //We create the actual game here by putting an object inside of the array.
                     
                         // - - -  Bunch of polymorphism here...
+
+                        //TODO Improve Row/Col Sys + RefNum Sys.
 
                         //If "o" is detected, then a peg is created.
                         if (lineIN[j].equals("o"))
