@@ -6,81 +6,111 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
 public class FileReader {
-
+    
+    //Main function used for tests & runs.
     public static void main(String[] args) {
 
-        //This is the file path to be reused.
+        // TODO Fahim, please generate a Junit test.
+        // TODO all you need to do is take those, and put our output equal to expected output (return boolean)
+        // TODO any issues, let me know. -Fadi
 
-        String[][] myArrayery = readFromFile("Workspace/State");
+        //This is the file path to be reused.
+        PegGameObject[][] myArrayery = readFromFile("./Workspace/State");
         
-        for (int i = 0; i < myArrayery.length; i++) {
-            for (int j = 0; j < myArrayery[i].length; j++) {
+        System.out.println("This is the actual game being printed.");
+        for (int i = 0; i < myArrayery.length; i++) 
+        {
+            for (int j = 0; j < myArrayery[i].length; j++) 
+            {
                 System.out.print(myArrayery[i][j] + " ");
             }
             System.out.println(); // Move to the next line after printing each row
         }
-
+        System.out.println(myArrayery[1][1]);
     }
-    /**
-     * This is the readFromFile method.
-     * We use it to automatically open a file, create the array, and use bufferedreader in java.io to read the contents of the 
-     * state.txt file, then put it into a 2d array.
+
+    //Two Dimensional Array being initialized. It is a PegorHole.
+     public static PegGameObject[][] TwoDeeArray = new PegGameObject[4][4];
+
+    /*
+     * readFromFile() function is a function that takes a text file, and reads it.
+     * It then creates the actual game environment, and it results in a two dimensional array
+     * -filled with game objects.
      * 
-     * @param filePath
-     * @return
+     * @return PegGameObject[][]
      */
-    public static String[][] readFromFile(String filePath) {
+     public static PegGameObject[][] readFromFile(String filePath) {
         //2D ARRAY 4 BY 4
-        String[][] TwoDeeArray = new String[4][4];
-
-
         try 
         {
-            //Try and catch statement for code coverage and whatnot.
-            //We are using bufferedreader, InputStreamReader, then FileInputStream. 
-            //FileInputStream basically takes the bytes from a file, then streamreader converts them,
-            //Then they are finally read by the bufferedreader.
+            //Reading Section of the File. Binary(FileInpStream)-->Chars(InputStrmReader)-->Usable(Bfreader)
             FileInputStream theInputStream = new FileInputStream(filePath);
             InputStreamReader readerStream = new InputStreamReader(theInputStream);
             BufferedReader bfReader = new BufferedReader(readerStream);
 
-            
-            //int rows = 0;
-            //int columns = 0;
-            //String line;
+            //Initializing some variables used for holding, then row for tracking number of rows.
             String line;
-            int row = 0; // Track the current row index in TwoDeeArray
+            int row = 0; 
 
-
-            //Gangsterly Reading the file, we have to use a WHILE LOP with FOR LOOP inside of it.
-            //Smart, I know.
-            while ((line = bfReader.readLine()) != null) {
-            String[] lineIN = line.trim().split("");
-            if (lineIN.length <= TwoDeeArray[0].length) {
-                //READING LINE BY LINE, LESS LENGHT, INCREMENT.
-                for (int j = 0; j < lineIN.length; j++) 
+            //Using while loop to read through each line until there are no more lines in text file.
+            while ((line = bfReader.readLine()) != null) 
                 {
-                    TwoDeeArray[row][j] = lineIN[j];
+                //We create an Array, that takes the readline then trims it, then splits based on whitespace.
+                String[] lineIN = line.trim().split(""); 
+
+                //Condition checks length of read file, to check if it can be put into 2d array. Prevents Errors.
+                if (lineIN.length <= TwoDeeArray[0].length) 
+                {
+                    //A for loop goes through each part of the array.
+                    for (int j = 0; j < lineIN.length; j++) 
+                    {
+                        //Now here are a collection of if statements.
+                        //We create the actual game here by putting an object inside of the array.
+                    
+                        // - - -  Bunch of polymorphism here...
+
+                        //If "o" is detected, then a peg is created.
+                        if (lineIN[j].equals("o"))
+                        {
+                            //Addition of peg at that certain position, peg tracking info is provided.
+                            TwoDeeArray[row][j] = new Peg(row,j,j);
+                        }
+
+                        // if "-" is found, then a hole is created.
+                        else if(lineIN[j].equals("-"))
+                        {
+                            //Addition of hole at that position. Info is provided.
+                            TwoDeeArray[row][j] = new Hole(row,j,j);
+                        }
+
+                        //If it's a different letter, it will go to this.
+                        else
+                        {
+                            System.out.println("ERROR, NOT DETECTED CHAR");
+                        }
+                    }
+                    //Increment to continue.
+                    row++;
+                }     
+                //Else statement incase of issue between row-column synch.  
+                else
+                {
+                    System.err.println("ROW-COLUMN PROBLEM, REFER.");
                 }
-                row++;
-            }       
-        else
-        {
-            System.err.println("Error: Line length exceeds column count.");
-        }
-}
-            bfReader.close();
-        
-        //CODE COVERAGE.
-        //TODO Halil prep for junit tests
-        } catch (FileNotFoundException e) {
+                }
+                
+                //Close reader to prevent any resource leakage.
+                bfReader.close();
+
+        } //The various exception handling which are required, file not found and IO exception.
+        catch (FileNotFoundException e) {
             System.out.println("File has not been found");
         } catch (IOException e) {
             System.out.println("There was an issue opening the file.");
         }
-
+        //Returnal of the actual 2d array that is passed by and used anywhere else.
         return TwoDeeArray;
     }
 }
+

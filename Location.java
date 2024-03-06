@@ -1,9 +1,10 @@
 package Workspace;
 
-import Workspace.FileReader;
 public class Location {
 
     //This defines the actual location on the board.
+    //TODO Attention, the fileReader.java file has essentially done everything that is needed.
+    //TODO I will be working on this soon to optimize it. -FADI
     
     public int row;
     public int col;
