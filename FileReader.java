@@ -15,28 +15,12 @@ public class FileReader {
     //Main function used for tests & runs.
     public static void main(String[] args) {
 
-        // TODO Fahim, please generate a Junit test.
-        // TODO all you need to do is take those, and put our output equal to expected output (return boolean)
-        // TODO any issues, let me know. -Fadi
-
         //This is the file path to be reused.
-        PegGameObject[][] myArrayery = readFromFile("./Workspace/State");
-        
-        System.out.println("This is the actual game being printed.");
-        for (int i = 0; i < myArrayery.length; i++) 
-        {
-            for (int j = 0; j < myArrayery[i].length; j++) 
-            {
-                System.out.print(myArrayery[i][j] + " ");
-            }
-            System.out.println(); // Move to the next line after printing each row
-        }
-        System.out.println(myArrayery[1][1]);
+        //PegGameObject[][] myArrayery = readFromFile("./Workspace/State");
 
-        //WORKS GETTER!
-        Peg testingval = (Peg) myArrayery[2][2];
-        System.out.println(testingval.getRow());
     }
+    
+    
 
     //Two Dimensional Array being initialized. It is a PegorHole.
      public static PegGameObject[][] TwoDeeArray = new PegGameObject[4][4];

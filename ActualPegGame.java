@@ -2,9 +2,7 @@ package Workspace;
 
 import java.util.ArrayList;
 
-import TestingPath.GameObjects.Hole;
-import TestingPath.GameObjects.Peg;
-import Workspace.GameObjects.PegGameObject;
+import Workspace.GameObjects.*;
 
 
 /*
@@ -22,63 +20,37 @@ Idea: Clear Algorithm after every user input as a move
 
 public class ActualPegGame implements PegGame {
     CurrentGameState GameStatery = CurrentGameState.NOT_STARTED;
-    public static void main(String[] args)
+    public PegGameObject[][] pegboard;
+
+    public ActualPegGame(PegGameObject[][] boardgame)
     {
-        ActualPegGame game = new ActualPegGame();
-
-        //ACTUAL GAME STATE
-        PegGameObject[][] actualBoardgame = FileReader.readFromFile("TestingPath/State");
-
-        //move r3 c2 r1 c2
-        //move r1 c0 r1 c2
-    
-
-        printGameState(actualBoardgame);
-        System.out.println("-------");
-
-        //Takes Input as Row,Col
-        String[] parsedMoves = game.moveParse("move r3 c0 r1 c2");
-
-        // Call makeMove method and check the return value
-        int moveResult = game.makeMove(parsedMoves, actualBoardgame);
-
-        printGameState(actualBoardgame);
-
-        if (moveResult == 1) {
-            System.out.println("Move was successful!");
-            // Print the updated game state
-        } 
-        else {
-            System.out.println("Move was not valid or not possible.");
-        }
+        this.GameStatery = CurrentGameState.NOT_STARTED;
+        this.pegboard = boardgame;
 
     }
 
-
-
-    public static void printGameState(PegGameObject[][] gameState) {
+    public void printGameState() {
         // Print the game state in a formatted manner
-        for (int i = 0; i < gameState.length; i++) 
+        for (int i = 0; i < pegboard.length; i++) 
         {
-            for (int j = 0; j < gameState[i].length; j++) 
+            for (int j = 0; j < pegboard[i].length; j++) 
             {
-                System.out.print(gameState[i][j] + " ");
+                System.out.print(pegboard[i][j] + " ");
             }
             System.out.println(); // Move to the next line after printing each row
         }
     }
 
-  
 //ALERT please keep in mind theres an input issue, it takes input as ROW,COLUMN but gives you result as COLUMN,ROW.
 @Override
-public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][] gameWeAreCheckingForMoves)  
+public ArrayList<String> getPossibleMoves(int column, int row)  
 {
     // Initializing Array
     ArrayList<String> possibleMoves = new ArrayList<>(6);
     try
     {
         // Checking column+2, row-2
-        if(column < gameWeAreCheckingForMoves[row].length - 2 && row >= 2 && gameWeAreCheckingForMoves[row - 2][column + 2].isEmpty())
+        if(column < pegboard[row].length - 2 && row >= 2 && pegboard[row - 2][column + 2].isEmpty())
         {
             String toRow = String.valueOf(row - 2);
             String toCol = String.valueOf(column + 2);
@@ -86,7 +58,7 @@ public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][]
             possibleMoves.add(encapsulatedMoves);
         }
         // Checking column, row-2
-        if(row >= 2 && gameWeAreCheckingForMoves[row - 2][column].isEmpty())
+        if(row >= 2 && pegboard[row - 2][column].isEmpty())
         {
             String toRow = String.valueOf(row - 2);
             String toCol = String.valueOf(column);
@@ -94,7 +66,7 @@ public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][]
             possibleMoves.add(encapsulatedMoves);
         }
         // Checking column-2, row-2
-        if(column >= 2 && row >= 2 && gameWeAreCheckingForMoves[row - 2][column - 2].isEmpty())
+        if(column >= 2 && row >= 2 && pegboard[row - 2][column - 2].isEmpty())
         {
             String toRow = String.valueOf(row - 2);
             String toCol = String.valueOf(column - 2);
@@ -102,7 +74,7 @@ public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][]
             possibleMoves.add(encapsulatedMoves);
         }
         // Checking column+2, row
-        if(column < gameWeAreCheckingForMoves[row].length - 2 && gameWeAreCheckingForMoves[row][column + 2].isEmpty())
+        if(column < pegboard[row].length - 2 && pegboard[row][column + 2].isEmpty())
         {
             String toRow = String.valueOf(row);
             String toCol = String.valueOf(column + 2);
@@ -110,7 +82,7 @@ public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][]
             possibleMoves.add(encapsulatedMoves);
         }
         // Checking column-2, row
-        if(column >= 2 && gameWeAreCheckingForMoves[row][column - 2].isEmpty())
+        if(column >= 2 && pegboard[row][column - 2].isEmpty())
         {
             String toRow = String.valueOf(row);
             String toCol = String.valueOf(column - 2);
@@ -118,7 +90,7 @@ public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][]
             possibleMoves.add(encapsulatedMoves);
         }
         // Checking column, row+2
-        if(row < gameWeAreCheckingForMoves.length - 2 && gameWeAreCheckingForMoves[row + 2][column].isEmpty())
+        if(row < pegboard.length - 2 && pegboard[row + 2][column].isEmpty())
         {
             String toRow = String.valueOf(row + 2);
             String toCol = String.valueOf(column);
@@ -126,7 +98,7 @@ public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][]
             possibleMoves.add(encapsulatedMoves);
         }
         // Checking column+2, row+2
-        if(column < gameWeAreCheckingForMoves[row].length - 2 && row < gameWeAreCheckingForMoves.length - 2 && gameWeAreCheckingForMoves[row + 2][column + 2].isEmpty())
+        if(column < pegboard[row].length - 2 && row < pegboard.length - 2 && pegboard[row + 2][column + 2].isEmpty())
         {
             String toRow = String.valueOf(row + 2);
             String toCol = String.valueOf(column + 2);
@@ -134,7 +106,7 @@ public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][]
             possibleMoves.add(encapsulatedMoves);
         }
         // Checking column-2, row+2
-        if(column >= 2 && row < gameWeAreCheckingForMoves.length - 2 && gameWeAreCheckingForMoves[row + 2][column - 2].isEmpty())
+        if(column >= 2 && row < pegboard.length - 2 && pegboard[row + 2][column - 2].isEmpty())
         {
             String toRow = String.valueOf(row + 2);
             String toCol = String.valueOf(column - 2);
@@ -153,7 +125,7 @@ public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][]
 }   
 
     @Override
-    public int makeMove(String[] parsedMoves, PegGameObject[][] gameWeAreMakingMove) 
+    public int makeMove(String[] parsedMoves) 
     { 
 
         String fromRow1 = parsedMoves[1].substring(1); // Removing the 'r' prefix
@@ -167,7 +139,7 @@ public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][]
         int toRow = Integer.parseInt(toRow2);
         int toColumn = Integer.parseInt(toColumn2);
 
-        ArrayList<String> myPossibleMoves = getPossibleMoves(fromRow,fromColumn,gameWeAreMakingMove);
+        ArrayList<String> myPossibleMoves = getPossibleMoves(fromRow,fromColumn);
 
         // Comparing possible moves to the destination row and column
         if (myPossibleMoves.contains(String.valueOf(toColumn) + String.valueOf(toRow))) {
@@ -175,15 +147,15 @@ public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][]
 
 
             //POLYMORPHISM!!!! 
-            gameWeAreMakingMove[fromColumn][fromRow] = new Hole(fromRow,fromColumn); // Leaving the from position
-            gameWeAreMakingMove[toColumn][toRow] = new Peg(toRow,toColumn); // Moving the peg to the to position
+            pegboard[fromColumn][fromRow] = new Hole(fromRow,fromColumn); // Leaving the from position
+            pegboard[toColumn][toRow] = new Peg(toRow,toColumn); // Moving the peg to the to position
     
             // Calculate the position of the peg to remove
             int removeRow = (fromRow + toRow) / 2;
             int removeColumn = (fromColumn + toColumn) / 2;
     
             // Remove the peg in between
-            gameWeAreMakingMove[removeColumn][removeRow] = (PegGameObject) new Hole(removeColumn,removeColumn); // Replace with a hole
+            pegboard[removeColumn][removeRow] = (PegGameObject) new Hole(removeColumn,removeColumn); // Replace with a hole
             return 1; // Successful move
         }
         
@@ -191,9 +163,21 @@ public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][]
     }
 
     @Override
-    public CurrentGameState getGameState() {
-        //TEMPORARY
-        return CurrentGameState.NOT_STARTED;
+    public CurrentGameState getGameState() 
+    {
+        //if one peg remaining, won.
+        //if more than one remaining, stalemate.
+        //else in progress.    
+
+        return GameStatery;
+    }
+
+    public CurrentGameState setCurrentGameState(CurrentGameState state)
+    {
+        //If there is 0 pegs remaining, win.
+        //If there is 1 peg remaining, stalemate.
+        //If there is more than 1 remaining, lose.
+        return this.GameStatery = state;
     }
 
     @Override
@@ -216,7 +200,28 @@ public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][]
 
     }
 
+    /**
+     * Counts objects inside of the actual gameboard, pegboard.
+     * @param ObjShape
+     * @return
+     */
+    public int CountObject(String ObjShape)
+    {
+        int numOfObjs = 0;
+        for (int i = 0; i < pegboard.length; i++) 
+        {
+            for (int j = 0; j < pegboard[i].length; j++) 
+            {
+                if(pegboard[i][j].equals(ObjShape))
+                {
+                    numOfObjs=numOfObjs+1;
+                }
+            }
+            System.out.println(); // Move to the next line after printing each row
+        }
 
+        return numOfObjs;
+    }
 
 
     
