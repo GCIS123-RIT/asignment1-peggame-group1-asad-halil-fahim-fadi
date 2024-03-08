@@ -1,8 +1,8 @@
-package Workspace;
+package peggame;
 
 import java.util.Scanner;
 
-import Workspace.GameObjects.PegGameObject;
+import peggame.GameObjects.PegGameObject;
 
 /**This class is the runner for the game */
 public class Project1Main {

@@ -1,4 +1,4 @@
-package Workspace.Functions;
+package peggame.Functions;
 
 public class Location {
 

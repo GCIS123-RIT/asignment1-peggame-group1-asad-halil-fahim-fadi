@@ -1,4 +1,4 @@
-package Workspace.GameObjects;
+package peggame.GameObjects;
 
 /**
  * This is the PegGameObject, meaning an object in the peg game.

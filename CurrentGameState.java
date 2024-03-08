@@ -1,4 +1,4 @@
-package Workspace;
+package peggame;
 
 public enum CurrentGameState
     {
