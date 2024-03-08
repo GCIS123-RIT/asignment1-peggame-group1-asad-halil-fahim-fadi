@@ -2,7 +2,8 @@ package Workspace;
 
 import java.util.ArrayList;
 
-import Workspace.Functions.Location;
+import TestingPath.GameObjects.Hole;
+import TestingPath.GameObjects.Peg;
 import Workspace.GameObjects.PegGameObject;
 
 
@@ -23,7 +24,33 @@ public class ActualPegGame implements PegGame {
     CurrentGameState GameStatery = CurrentGameState.NOT_STARTED;
     public static void main(String[] args)
     {
-        
+        ActualPegGame game = new ActualPegGame();
+
+        //ACTUAL GAME STATE
+        PegGameObject[][] actualBoardgame = FileReader.readFromFile("TestingPath/State");
+
+        //move r3 c2 r1 c2
+        //move r1 c0 r1 c2
+    
+
+        printGameState(actualBoardgame);
+        System.out.println("-------");
+
+        //Takes Input as Row,Col
+        String[] parsedMoves = game.moveParse("move r3 c0 r1 c2");
+
+        // Call makeMove method and check the return value
+        int moveResult = game.makeMove(parsedMoves, actualBoardgame);
+
+        printGameState(actualBoardgame);
+
+        if (moveResult == 1) {
+            System.out.println("Move was successful!");
+            // Print the updated game state
+        } 
+        else {
+            System.out.println("Move was not valid or not possible.");
+        }
 
     }
 
@@ -126,21 +153,47 @@ public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][]
 }   
 
     @Override
-    public Location makeMove(Location firstPos, Location secondPos) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'makeMove'");
-    }
+    public int makeMove(String[] parsedMoves, PegGameObject[][] gameWeAreMakingMove) 
+    { 
 
-    @Override
-    public int makeMove(String[] parsedMoves, PegGameObject[][] gameWeAreCheckingForMoves) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'makeMove'");
+        String fromRow1 = parsedMoves[1].substring(1); // Removing the 'r' prefix
+        String fromColumn1 = parsedMoves[2].substring(1); // Removing the 'c' prefix
+        String toRow2 = parsedMoves[3].substring(1); // Removing the 'r' prefix
+        String toColumn2 = parsedMoves[4].substring(1); // Removing the 'c' prefix
+        
+        // Convert strings to integers
+        int fromRow = Integer.parseInt(fromRow1);
+        int fromColumn = Integer.parseInt(fromColumn1);
+        int toRow = Integer.parseInt(toRow2);
+        int toColumn = Integer.parseInt(toColumn2);
+
+        ArrayList<String> myPossibleMoves = getPossibleMoves(fromRow,fromColumn,gameWeAreMakingMove);
+
+        // Comparing possible moves to the destination row and column
+        if (myPossibleMoves.contains(String.valueOf(toColumn) + String.valueOf(toRow))) {
+            // Make the move by updating the game state
+
+
+            //POLYMORPHISM!!!! 
+            gameWeAreMakingMove[fromColumn][fromRow] = new Hole(fromRow,fromColumn); // Leaving the from position
+            gameWeAreMakingMove[toColumn][toRow] = new Peg(toRow,toColumn); // Moving the peg to the to position
+    
+            // Calculate the position of the peg to remove
+            int removeRow = (fromRow + toRow) / 2;
+            int removeColumn = (fromColumn + toColumn) / 2;
+    
+            // Remove the peg in between
+            gameWeAreMakingMove[removeColumn][removeRow] = (PegGameObject) new Hole(removeColumn,removeColumn); // Replace with a hole
+            return 1; // Successful move
+        }
+        
+        return 0; 
     }
 
     @Override
     public CurrentGameState getGameState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGameState'");
+        //TEMPORARY
+        return CurrentGameState.NOT_STARTED;
     }
 
     @Override
@@ -162,6 +215,8 @@ public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][]
         return parts;
 
     }
+
+
 
 
     

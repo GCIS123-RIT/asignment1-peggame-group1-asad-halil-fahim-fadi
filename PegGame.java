@@ -2,7 +2,6 @@ package Workspace;
 
 import java.util.ArrayList;
 
-import Workspace.Functions.Location;
 import Workspace.GameObjects.PegGameObject;
 
 /**
@@ -19,9 +18,8 @@ public interface PegGame {
     public CurrentGameState getGameState();
 
     //This will essentially allow the user to make a move from one position to another.
-    public Location makeMove(Location firstPos, Location secondPos);
-
     public int makeMove(String[] parsedMoves, PegGameObject[][] gameWeAreCheckingForMoves);
+
     public String[] moveParse(String CLILine);
 
 
