@@ -1,5 +1,6 @@
 package Workspace;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 
@@ -72,4 +73,42 @@ public class PegGameCLI {
             System.out.println("You lost. Better luck next time!");
         }
     }
+
+    public void setCurrentGameState(CurrentGameState stalemate) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCurrentGameState'");
+    }
+
+    public String[] moveParse(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'moveParse'");
+    }
+
+     @Override
+    public int hashCode() {
+        return Objects.hash(ANSI_RESET, ANSI_GREEN, ANSI_RED);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        PegGameCLI other = (PegGameCLI) obj;
+        return Objects.equals(ANSI_RESET, other.ANSI_RESET)
+                && Objects.equals(ANSI_GREEN, other.ANSI_GREEN)
+                && Objects.equals(ANSI_RED, other.ANSI_RED);
+    }
+    @Override
+    public String toString() {
+    return "PegGameCLI{" +
+            "ANSI_RESET='" + ANSI_RESET + '\'' +
+            ", ANSI_GREEN='" + ANSI_GREEN + '\'' +
+            ", ANSI_RED='" + ANSI_RED + '\'' +
+            '}';
+}
+
 }
