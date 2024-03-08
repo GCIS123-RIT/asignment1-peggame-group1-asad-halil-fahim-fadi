@@ -1,7 +1,9 @@
-//package Workspace;
+package Workspace;
 
-import java.util.Scanner;
 import java.util.ArrayList;
+
+import Workspace.Functions.Location;
+import Workspace.GameObjects.PegGameObject;
 
 
 /*
@@ -22,46 +24,10 @@ public class ActualPegGame implements PegGame {
     public static void main(String[] args)
     {
         
-        System.out.println("   Welcome To The Peg Game ! \n");
-        System.out.println("\t Main Menu \t \n");
-        System.out.println("1. Press P to play! \n2. Q to Quit!");
-        
-        //Thank you halil... ^ ^ ^
-
-        Scanner myScanner = new Scanner(System.in);
-        String UserPlayOrNo = myScanner.nextLine();
-        myScanner.close();
-
-
-
-        //Created The Actual 2D Array for the Game.
-        if(UserPlayOrNo.equals("P"))
-        {
-            CurrentGameState GameStatery = CurrentGameState.IN_PROGRESS;
-
-            PegGameObject[][] TheGameRunningRightNow = Workspace.FileReader.readFromFile("./Workspace/State");
-
-            printGame(TheGameRunningRightNow);
-
-
-            System.out.println("What's your move, Human?\n");
-
-            Scanner scanningHuman = new Scanner(System.in);
-            String humanMove = scanningHuman.nextLine();
-            scanningHuman.close();
-
-
-            while(UserPlayOrNo != "Q")
-            {
-                
-            }
-
-
-
-
-        }
 
     }
+
+
 
     public static void printGameState(PegGameObject[][] gameState) {
         // Print the game state in a formatted manner
@@ -76,22 +42,52 @@ public class ActualPegGame implements PegGame {
     }
 
   
-   
-
-
+    //ALERT please keep in mind theres an input issue, it takes input as ROW,COLUMN but gives you result as COLUMN,ROW.
     @Override
-    public ArrayList<Move> getPossibleMoves() {
-
+    public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][] gameWeAreCheckingForMoves)  
+    {
+        // Initializing Array
+        ArrayList<String> possibleMoves = new ArrayList<>(6);
 
         return null;
     }
-    @Override
-    public CurrentGameState getGameState() {
-        return null;
-    }
+
     @Override
     public Location makeMove(Location firstPos, Location secondPos) {
-        return null;
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'makeMove'");
+    }
+
+    @Override
+    public int makeMove(String[] parsedMoves, PegGameObject[][] gameWeAreCheckingForMoves) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'makeMove'");
+    }
+
+    @Override
+    public CurrentGameState getGameState() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getGameState'");
+    }
+
+    @Override
+    public String[] moveParse(String CLILine)
+    {
+
+        //move r1 c2 r3 c3
+        String input = CLILine;
+        
+        // Split the input string by spaces
+        String[] parts = input.split(" ");
+
+        //GUIDE
+        //String fromRow1 = parts[1].substring(1); // Removing the 'r' prefix
+        //String fromColumn1 = parts[2].substring(1); // Removing the 'c' prefix
+        //String toRow2 = parts[3].substring(1); // Removing the 'r' prefix
+        //String toColumn2 = parts[4].substring(1); // Removing the 'c' prefix
+
+        return parts;
+
     }
 
 
