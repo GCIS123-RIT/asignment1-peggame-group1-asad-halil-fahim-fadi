@@ -12,14 +12,11 @@ public class Hole implements PegGameObject
 
     int row = 0;
     int column = 0;
-    int ReferenceNumber = 1;
 
-    public Hole(int mRow, int mColumn, int RefNumb)
+    public Hole(int mRow, int mColumn)
     {
         this.row = mRow;
         this.column = mColumn;
-
-        this.ReferenceNumber = RefNumb;
     }
 
 
@@ -28,11 +25,17 @@ public class Hole implements PegGameObject
     {
         return "-";
     }
+
+
+    @Override
+    public boolean isEmpty() {
+        return true;
+    }
 }
 
 
 
-
+// HALIL CODE
 // private void checkdirection(List<Move> moves, int r1, int c1, int verticaloffset, int horizontaloffset)
 // { 
 //     int targetrow = r1 + verticaloffset;

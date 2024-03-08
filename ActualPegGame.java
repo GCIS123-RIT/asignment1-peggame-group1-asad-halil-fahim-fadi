@@ -2,27 +2,7 @@ package Workspace;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-
-
-/*
- * 1. row-2, column
- * 2. row-2, column-2
- * 3. r+2, column
- * 4. r+2, c+2
-1. Read User Input
-2. GetPossibleMoves + if else statements
-3. (If illegal) throw Exception
-4. (If legal) Pass the move and repeat the process until game end/process killed
-
-Idea: Clear Algorithm after every user input as a move
- */
-
-public class ActualPegGame implements PegGame {
-    CurrentGameState GameStatery = CurrentGameState.NOT_STARTED;
-    public static void main(String[] args)
-    {
-
-    }
+import Workspace.PegGameObject;
         /* 
         System.out.println("   Welcome To The Peg Game ! \n");
         System.out.println("\t Main Menu \t \n");
@@ -45,9 +25,7 @@ public class ActualPegGame implements PegGame {
         }
 
     }
-    */
-
-    //23
+    
     public Location[] lastTwoLocations(String lineInput)
     {
         Location[] toLocation = new Location[2];
@@ -55,14 +33,28 @@ public class ActualPegGame implements PegGame {
 
         return null;
     }
+    */
+/*
+ * 1. row-2, column
+ * 2. row-2, column-2
+ * 3. r+2, column
+ * 4. r+2, c+2
+1. Read User Input
+2. GetPossibleMoves + if else statements
+3. (If illegal) throw Exception
+4. (If legal) Pass the move and repeat the process until game end/process killed
 
+Idea: Clear Algorithm after every user input as a move
+ */
 
-    @Override
-    public ArrayList<Move> getPossibleMoves() {
+public class ActualPegGame implements PegGame {
+    CurrentGameState GameStatery = CurrentGameState.NOT_STARTED;
+    public static void main(String[] args)
+    {
 
-
-        return null;
     }
+
+
     @Override
     public CurrentGameState getGameState() {
         return null;
@@ -87,8 +79,14 @@ public class ActualPegGame implements PegGame {
 
         return theArray;
     }
+
     
 
-}
 
+    @Override
+    public ArrayList<Integer> getPossibleMoves(int row, int column, PegGameObject[][] gameWeAreCheckingForMoves) {
+
+        return null;
+    }
+}
 

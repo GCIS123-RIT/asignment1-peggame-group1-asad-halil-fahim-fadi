@@ -10,14 +10,11 @@ public class Peg implements PegGameObject
 
     int row = 0;
     int column = 0;
-    int ReferenceNumber = 1;
 
-    public Peg(int mRow, int mColumn, int RefNumb)
+    public Peg(int mRow, int mColumn)
     {
         this.row = mRow;
         this.column = mColumn;
-
-        this.ReferenceNumber = RefNumb;
     }
 
     public int getRow(){return this.row;}
@@ -28,5 +25,10 @@ public class Peg implements PegGameObject
     public String toString()
     {
         return "o";
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
     }
 }

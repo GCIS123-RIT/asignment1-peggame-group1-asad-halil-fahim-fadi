@@ -14,7 +14,6 @@ public interface PegGameObject
             public int row = 0;
             public int column = 0;
 
-            //A reference number, good to keep in handy, because we can trace any errors to a certain object.
-            public int ReferenceNumber = 1;
+            public boolean isEmpty();
     
         }
