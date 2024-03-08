@@ -1,4 +1,4 @@
-// package Workspace;
+package Workspace;
 
 /**
  * This is the PegGameObject, meaning an object in the peg game.

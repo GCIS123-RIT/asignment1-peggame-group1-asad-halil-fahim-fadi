@@ -1,4 +1,4 @@
-// package Workspace;
+package Workspace;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -21,54 +21,36 @@ public class ActualPegGame implements PegGame {
     CurrentGameState GameStatery = CurrentGameState.NOT_STARTED;
     public static void main(String[] args)
     {
-        
+
+    }
+        /* 
         System.out.println("   Welcome To The Peg Game ! \n");
         System.out.println("\t Main Menu \t \n");
         System.out.println("1. Press P to play! \n2. Q to Quit!");
-        
         //Thank you halil... ^ ^ ^
-
         Scanner myScanner = new Scanner(System.in);
         String UserPlayOrNo = myScanner.nextLine();
         myScanner.close();
-
-
-
         //Created The Actual 2D Array for the Game.
         if(UserPlayOrNo.equals("P"))
         {
             CurrentGameState GameStatery = CurrentGameState.IN_PROGRESS;
-
             PegGameObject[][] TheGameRunningRightNow = Workspace.FileReader.readFromFile("./Workspace/State");
-
             printGame(TheGameRunningRightNow);
-
-
             System.out.println("What's your move, Human?\n");
-
             Scanner scanningHuman = new Scanner(System.in);
             String humanMove = scanningHuman.nextLine();
             scanningHuman.close();
-
-
-            while(UserPlayOrNo != "Q")
-            {
-                
-            }
-
-
-
-
+            //while(UserPlayOrNo != "Q")
         }
 
     }
+    */
 
-    //move r2 c3 r4 c5
+    //23
     public Location[] lastTwoLocations(String lineInput)
     {
         Location[] toLocation = new Location[2];
-
-        String lastTwoNumbers = lineInput.replaceAll("^.*?(\\d{2})$", "$1");
 
 
         return null;
