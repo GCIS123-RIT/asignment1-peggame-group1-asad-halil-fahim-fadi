@@ -42,15 +42,88 @@ public class ActualPegGame implements PegGame {
     }
 
   
-    //ALERT please keep in mind theres an input issue, it takes input as ROW,COLUMN but gives you result as COLUMN,ROW.
-    @Override
-    public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][] gameWeAreCheckingForMoves)  
+//ALERT please keep in mind theres an input issue, it takes input as ROW,COLUMN but gives you result as COLUMN,ROW.
+@Override
+public ArrayList<String> getPossibleMoves(int column, int row, PegGameObject[][] gameWeAreCheckingForMoves)  
+{
+    // Initializing Array
+    ArrayList<String> possibleMoves = new ArrayList<>(6);
+    try
     {
-        // Initializing Array
-        ArrayList<String> possibleMoves = new ArrayList<>(6);
+        // Checking column+2, row-2
+        if(column < gameWeAreCheckingForMoves[row].length - 2 && row >= 2 && gameWeAreCheckingForMoves[row - 2][column + 2].isEmpty())
+        {
+            String toRow = String.valueOf(row - 2);
+            String toCol = String.valueOf(column + 2);
+            String encapsulatedMoves = toRow + toCol;
+            possibleMoves.add(encapsulatedMoves);
+        }
+        // Checking column, row-2
+        if(row >= 2 && gameWeAreCheckingForMoves[row - 2][column].isEmpty())
+        {
+            String toRow = String.valueOf(row - 2);
+            String toCol = String.valueOf(column);
+            String encapsulatedMoves = toRow + toCol;
+            possibleMoves.add(encapsulatedMoves);
+        }
+        // Checking column-2, row-2
+        if(column >= 2 && row >= 2 && gameWeAreCheckingForMoves[row - 2][column - 2].isEmpty())
+        {
+            String toRow = String.valueOf(row - 2);
+            String toCol = String.valueOf(column - 2);
+            String encapsulatedMoves = toRow + toCol;
+            possibleMoves.add(encapsulatedMoves);
+        }
+        // Checking column+2, row
+        if(column < gameWeAreCheckingForMoves[row].length - 2 && gameWeAreCheckingForMoves[row][column + 2].isEmpty())
+        {
+            String toRow = String.valueOf(row);
+            String toCol = String.valueOf(column + 2);
+            String encapsulatedMoves = toRow + toCol;
+            possibleMoves.add(encapsulatedMoves);
+        }
+        // Checking column-2, row
+        if(column >= 2 && gameWeAreCheckingForMoves[row][column - 2].isEmpty())
+        {
+            String toRow = String.valueOf(row);
+            String toCol = String.valueOf(column - 2);
+            String encapsulatedMoves = toRow + toCol;
+            possibleMoves.add(encapsulatedMoves);
+        }
+        // Checking column, row+2
+        if(row < gameWeAreCheckingForMoves.length - 2 && gameWeAreCheckingForMoves[row + 2][column].isEmpty())
+        {
+            String toRow = String.valueOf(row + 2);
+            String toCol = String.valueOf(column);
+            String encapsulatedMoves = toRow + toCol;
+            possibleMoves.add(encapsulatedMoves);
+        }
+        // Checking column+2, row+2
+        if(column < gameWeAreCheckingForMoves[row].length - 2 && row < gameWeAreCheckingForMoves.length - 2 && gameWeAreCheckingForMoves[row + 2][column + 2].isEmpty())
+        {
+            String toRow = String.valueOf(row + 2);
+            String toCol = String.valueOf(column + 2);
+            String encapsulatedMoves = toRow + toCol;
+            possibleMoves.add(encapsulatedMoves);
+        }
+        // Checking column-2, row+2
+        if(column >= 2 && row < gameWeAreCheckingForMoves.length - 2 && gameWeAreCheckingForMoves[row + 2][column - 2].isEmpty())
+        {
+            String toRow = String.valueOf(row + 2);
+            String toCol = String.valueOf(column - 2);
+            String encapsulatedMoves = toRow + toCol;
+            possibleMoves.add(encapsulatedMoves);
+        }
 
-        return null;
     }
+    catch (ArrayIndexOutOfBoundsException e) {
+        System.err.println("An array index is out of bounds.");
+        e.printStackTrace(); // Print the stack trace for debugging purposes
+        return null; // or handle the exception in any other way that suits your application
+    }
+
+    return possibleMoves;
+}   
 
     @Override
     public Location makeMove(Location firstPos, Location secondPos) {
