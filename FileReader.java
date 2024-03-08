@@ -1,4 +1,4 @@
-package Workspace;
+// package Workspace;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -37,6 +37,17 @@ public class FileReader {
     //Two Dimensional Array being initialized. It is a PegorHole.
      public static PegGameObject[][] TwoDeeArray = new PegGameObject[4][4];
 
+    
+    //Discuss with the boys first (this is the only way to make the test actually work)
+    static { // the "static" is used to initialize the 2D array with null elements before starting. 
+
+         for (int i = 0; i < TwoDeeArray.length; i++) {
+             for (int j = 0; j < TwoDeeArray[i].length; j++) {
+                 TwoDeeArray[i][j] = null; // or any initial value you prefer
+             }
+         }
+     }
+     
     /*
      * readFromFile() function is a function that takes a text file, and reads it.
      * It then creates the actual game environment, and it results in a two dimensional array

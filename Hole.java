@@ -1,4 +1,4 @@
-package Workspace;
+// package Workspace;
 
 
 /*
@@ -29,3 +29,24 @@ public class Hole implements PegGameObject
         return "-";
     }
 }
+
+
+
+
+// private void checkdirection(List<Move> moves, int r1, int c1, int verticaloffset, int horizontaloffset)
+// { 
+//     int targetrow = r1 + verticaloffset;
+//     int targetcol = c1 + horizontaloffset;
+//     int overRow = r1 + verticaloffset / 2;
+//     int overCol = c1 + horizontaloffset / 2;
+
+//     if(targetrow >= 0 && targetrow<game.length && targetcol >= 0 && targetcol < game[0].length &&
+//      game[targetrow][targetcol] == '.' && board[overRow][overCol]=='o')
+//      {
+//         moves.add(new Move(new Location(r1,c1), new Location(targetrow,targetcol)));
+//      }
+// }
+
+
+
+
