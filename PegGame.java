@@ -19,10 +19,13 @@ public interface PegGame {
     //This will essentially allow the user to make a move from one position to another.
     public int makeMove(String[] parsedMoves);
 
+    //This parses the line
     public String[] moveParse(String CLILine);
 
+    //This prints the game state
     public void printGameState();
 
+    //This updates and helps with the game state.
     public CurrentGameState setCurrentGameState(CurrentGameState inProgress);
 
 

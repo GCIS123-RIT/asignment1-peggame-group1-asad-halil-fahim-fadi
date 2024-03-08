@@ -25,6 +25,8 @@ public class Project1Main {
         //Try/Catch block in order to prevent any errors during opening or scanner usage.
         try {
             //Creating an actualboard object using our readFromFile method.
+
+            // use ./peggame/TextFiles/file.txt
             PegGameObject[][] actualBoard = FileReader.readFromFile(filename);
 
             //Creating an actual game, an interface of PegGame. This is where everything actually runs.
@@ -47,4 +49,7 @@ public class Project1Main {
         scanner.close(); 
     }
     
+    //Danilo is quite literally an exquisite professor.
+    //Please help us, we finished this exactly at 11:59pm.
+
 }
