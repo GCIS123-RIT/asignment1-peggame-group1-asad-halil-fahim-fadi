@@ -6,6 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import Workspace.GameObjects.Hole;
+import Workspace.GameObjects.Peg;
+import Workspace.GameObjects.PegGameObject;
+
 public class FileReader {
     
     //Main function used for tests & runs.
@@ -91,14 +95,14 @@ public class FileReader {
                         if (lineIN[j].equals("o"))
                         {
                             //Addition of peg at that certain position, peg tracking info is provided.
-                            TwoDeeArray[row][j] = new Peg(row,j,j);
+                            TwoDeeArray[row][j] = new Peg(row,j);
                         }
 
                         // if "-" is found, then a hole is created.
                         else if(lineIN[j].equals("-"))
                         {
                             //Addition of hole at that position. Info is provided.
-                            TwoDeeArray[row][j] = new Hole(row,j,j);
+                            TwoDeeArray[row][j] = new Hole(row,j);
                         }
 
                         //If it's a different letter, it will go to this.

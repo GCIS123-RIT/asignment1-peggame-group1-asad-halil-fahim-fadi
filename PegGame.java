@@ -2,6 +2,9 @@ package Workspace;
 
 import java.util.ArrayList;
 
+import Workspace.Functions.Location;
+import Workspace.GameObjects.PegGameObject;
+
 /**
  * This is the PegGame interface which we will implement in order to intiliaze our game. 
  */
