@@ -1,4 +1,4 @@
-package peggame;
+package Workspace;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-import peggame.GameObjects.Hole;
-import peggame.GameObjects.Peg;
-import peggame.GameObjects.PegGameObject;
+import Workspace.GameObjects.Hole;
+import Workspace.GameObjects.Peg;
+import Workspace.GameObjects.PegGameObject;
 
 public class FileReader {
     

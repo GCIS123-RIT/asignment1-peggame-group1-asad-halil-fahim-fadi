@@ -1,4 +1,4 @@
-package peggame.GameObjects;
+package Workspace.GameObjects;
 
 /*
  * This is a Peg object which implements an interface.

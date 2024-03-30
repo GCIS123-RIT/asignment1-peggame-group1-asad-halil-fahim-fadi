@@ -1,4 +1,4 @@
-package peggame;
+package Workspace;
 
 import java.util.ArrayList;
 

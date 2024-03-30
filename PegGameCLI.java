@@ -1,4 +1,4 @@
-package peggame;
+package Workspace;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -68,7 +68,7 @@ public class PegGameCLI {
 
         // Printing game's feedback
         if (game.getGameState() == CurrentGameState.WON) {
-            System.out.println("Congratulations! You won!");
+            System.out.println("Hooray!");
         } else {
             System.out.println("You lost. Better luck next time!");
         }
