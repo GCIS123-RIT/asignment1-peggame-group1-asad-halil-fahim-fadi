@@ -15,4 +15,6 @@ public class Move {
     public Location[] getFrom(){return this.from;}
     public Location[] getTo(){return this.to;}
 
+
+
 }

@@ -74,15 +74,7 @@ public class PegGameCLI {
         }
     }
 
-    public void setCurrentGameState(CurrentGameState stalemate) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setCurrentGameState'");
-    }
 
-    public String[] moveParse(String string) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'moveParse'");
-    }
 
      @Override
     public int hashCode() {
